@@ -15,8 +15,9 @@ public class Main {
         View view = new View();
         Controller c = new Controller();
         PizzaMapper pm = new PizzaMapper();
+        BestillingsMapper bm = new BestillingsMapper();
 
-        startMenuFunk(view, c, pm);
+        startMenuFunk(view, c, pm, bm);
     }
     public static void lavNyPizza(View view, Controller c, PizzaMapper pm){
         List<Object> pizzainfo = view.createPizza();
