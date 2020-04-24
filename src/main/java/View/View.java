@@ -40,21 +40,29 @@ public class View {
         List<Object> retList = new ArrayList <Object>();
         Scanner in = new Scanner(System.in);
         System.out.println("Afhentningstidspunkt? hh:mm");
-        String tidspunkt = in.nextLine();
+        CharSequence tidspunkt = in.nextLine();
         //tidspunkt til DateTime type
-        retList.add(tidspunkt);
-        //metode der tilføjer pizzaobjekter i et loop
-        Pizza retPizza = addPizzaTilBestilling(pm, c);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+        TemporalAccessor temporalAccessor = formatter.parse(tidspunkt);
+        LocalTime afhentningstidspunkt = LocalTime.from(temporalAccessor);
+        retList.add(afhentningstidspunkt);
         return retList;
+        /*metode der tilføjer pizzaobjekter i et loop
+        Pizza retPizza = addPizzaTilBestilling(pm, c);
+        return retList;*/
     }
     public void success(){
         System.out.println("Handling gennemført.");
     }
     public Pizza addPizzaTilBestilling(PizzaMapper pm, Controller c){
        Scanner in = new Scanner(System.in);
-       System.out.println("Tilføj ny pizza til bestillingen vha. navn.");
-       String navn = in.nextLine();
-       Pizza retPizza = c.getPizzaTypeByNavn(navn, pm);
+       System.out.println("Tilføj ny pizza til bestillingen vha. navn. Tryk q for quit");
+       Pizza retPizza = null;
+       String input = in.nextLine();
+       while(!input.equals("q")){
+           String navn = in.nextLine();
+           retPizza = c.getPizzaTypeByNavn(navn, pm);
+       }
        return retPizza;
     }
 
