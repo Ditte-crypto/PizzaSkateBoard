@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import DataMappers.PizzaBestillingsMapper;
 import DataMappers.PizzaMapper;
 import Model.Pizza;
 
@@ -54,15 +55,15 @@ public class View {
     public void success(){
         System.out.println("Handling gennemført.");
     }
-    public void addPizzaTilBestilling(PizzaMapper pm, Controller c) {
-       //skal kunne sammenkæde ordreid og pizzaid
+    public void addPizzaTilBestilling(PizzaBestillingsMapper pbm, Controller c) {
+       /*//skal kunne sammenkæde ordreid og pizzaid
         Scanner in = new Scanner(System.in);
         System.out.println("Tilføj ny pizza til bestillingen vha. navn. Tryk q for quit");
         Pizza retPizza = null;
         String input = in.nextLine();
         while (!input.equals("q")) {
             String navn = in.nextLine();
-            retPizza = c.getPizzaTypeByNavn(navn, pm);
+            retPizza = c.getPizzaTypeByNavn(navn, pm);*/
         }
     }
 
