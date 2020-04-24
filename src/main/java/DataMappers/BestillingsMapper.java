@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 
 public class BestillingsMapper {
@@ -32,12 +35,12 @@ public class BestillingsMapper {
         (2,1);
          */
         String sqlQuerybestillinger = "";
-        String sqlQuerypizzaBestillinger = "";
+
         Connection connection = DBConnector.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
             Statement statement2 = connection.createStatement();
-            sqlQuerybestillinger = "insert into bestillinger(afhentning) values ("
+            sqlQuerybestillinger = "insert into bestillinger(afhentning)" + "values ("
                     + bestilling.getAfhentning() + "00);";
             statement.executeUpdate(sqlQuerybestillinger, Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = statement.getGeneratedKeys();
@@ -48,7 +51,7 @@ public class BestillingsMapper {
                 int pizzaId = p.getId();
                 sqlQuerybestillinger += "("+bestillingsID+","+ pizzaId+"),";
             }
-            String queryLast = sqlQuerybestillinger.substring(0,sqlQuerybestillinger.length()-1)+";";
+            String queryLast = sqlQuerybestillinger.substring(0,sqlQuerybestillinger.length()-1);
             statement2.executeUpdate(queryLast);
 
 

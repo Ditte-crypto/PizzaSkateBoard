@@ -54,7 +54,7 @@ public class View {
     public void success(){
         System.out.println("Handling gennemført.");
     }
-    public void addPizzaTilBestilling(PizzaBestillingsMapper pbm, Controller c) {
+    //public void addPizzaTilBestilling(PizzaBestillingsMapper pbm, Controller c) {
        /*//skal kunne sammenkæde ordreid og pizzaid
         Scanner in = new Scanner(System.in);
         System.out.println("Tilføj ny pizza til bestillingen vha. navn. Tryk q for quit");
@@ -63,8 +63,8 @@ public class View {
         while (!input.equals("q")) {
             String navn = in.nextLine();
             retPizza = c.getPizzaTypeByNavn(navn, pm);*/
-        }
 }
+
 
 
 
