@@ -36,25 +36,25 @@ public class Main {
         view.showMenu(pizzaer);
     }
 
-    public static void startMenuFunk(View view, Controller c, PizzaMapper pm){
+    public static void startMenuFunk(View view, Controller c, PizzaMapper pm, BestillingsMapper bm){
         Scanner in = new Scanner(System.in);
         view.startMenu();
         String input = in.nextLine().toLowerCase();
         if(!input.equals("q")){
             switch(input){
                 case "1":lavNyPizza(view, c, pm);
-                    startMenuFunk(view, c, pm);
+                    startMenuFunk(view, c, pm, bm);
                 break;
                 case "2":visPizzaerIDBTilBruger(view, c, pm);
-                startMenuFunk(view, c, pm);
+                startMenuFunk(view, c, pm, bm);
                 break;
-                case "3":view.lavBestilling(pm);
-                startMenuFunk(view, c, pm);
+                case "3":lavNyBestilling(view, c, bm, pm);
+                startMenuFunk(view, c, pm, bm);
                 break;
                 default:
                     System.out.println("Ugyldigt input");
-                    startMenuFunk(view, c, pm);
+                    startMenuFunk(view, c, pm, bm);
             }
-        }else{startMenuFunk(view, c, pm);}
+        }else{startMenuFunk(view, c, pm, bm);}
     }
 }
