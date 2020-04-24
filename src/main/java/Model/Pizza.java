@@ -45,7 +45,7 @@ public class Pizza {
         Pizza retPizza = null;
         ArrayList<Pizza> pizzaliste = pm.makePizzaObjectsFromDB();
         for(Pizza p:pizzaliste){
-            if(p.getNavn()==navn){
+            if(p.getNavn().equals(navn)){
                 retPizza = p;
                 System.out.println("Pizzaen er tilføjet bestillingen");
             }
