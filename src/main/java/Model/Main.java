@@ -22,11 +22,13 @@ public class Main {
         List<Object> pizzainfo = view.createPizza();
         Pizza pizza = c.createPizza(pizzainfo);
         pm.createPizzaInDB(pizza);
+        view.success();
     }
     public static void lavNyBestilling(View view, Controller c, BestillingsMapper bm, PizzaMapper pm){
-        List<Object> bestillingsinfo = view.lavBestilling(pm);
+        List<Object> bestillingsinfo = view.createBestilling(pm, c);
         Bestilling bestilling = c.createBestilling(bestillingsinfo);
         bm.createBestillingInDB(bestilling);
+
     }
 
     public static void visPizzaerIDBTilBruger(View view, Controller c, PizzaMapper pm){

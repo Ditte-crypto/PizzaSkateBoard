@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import DataMappers.PizzaMapper;
 import Model.Pizza;
 
@@ -35,41 +36,26 @@ public class View {
        +"[2] : se menukortet\n"+"[3] : lav bestilling\n"
        +"[q] : for at vende tilbage til hovedmenuen\n");
    }
-    public List<Object> lavBestilling(PizzaMapper pm){
+    public List<Object> createBestilling(PizzaMapper pm, Controller c){
         List<Object> retList = new ArrayList <Object>();
         Scanner in = new Scanner(System.in);
-
-        System.out.println("[1] : tilføj pizza til bestilling\n" +
-                "[2] : sæt afhentningstidspunkt\n"+
-                "[3] : forlad vindue\n");
-        String input = in.nextLine();
-        while(!input.equals("3")) {
-            switch (input) {
-                case "q":
-                    System.out.println("Du vil ikke tilføje flere pizzaer");
-                    break;
-                case "2": System.out.println("Afhentningstidspunkt? hh:mm, skriv 1 istedet for 13");
-                String afhentning = in.nextLine();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
-                TemporalAccessor temporalAccessor = formatter.parse(afhentning);
-                LocalTime afhentningstidspunkt = LocalTime.from(temporalAccessor);
-                retList.add(afhentningstidspunkt);
-                break;
-                case "1":
-                        System.out.println("Pizza? tryk q når du ikke vil tilføje flere pizzaer");
-                        String pizzanavn = in.nextLine();
-                        Pizza pizza = new Pizza();
-                        pizza.getPizzaTypeByNavn(pizzanavn, pm);
-                        retList.add(pizza);
-                    break;
-                default:
-                    System.out.println("Ugyldigt input");
-                    lavBestilling(pm);
-            }
-        }
-
+        System.out.println("Afhentningstidspunkt? hh:mm");
+        String tidspunkt = in.nextLine();
+        //tidspunkt til DateTime type
+        retList.add(tidspunkt);
+        //metode der tilføjer pizzaobjekter i et loop
+        Pizza retPizza = addPizzaTilBestilling(pm, c);
         return retList;
-
+    }
+    public void success(){
+        System.out.println("Handling gennemført.");
+    }
+    public Pizza addPizzaTilBestilling(PizzaMapper pm, Controller c){
+       Scanner in = new Scanner(System.in);
+       System.out.println("Tilføj ny pizza til bestillingen vha. navn.");
+       String navn = in.nextLine();
+       Pizza retPizza = c.getPizzaTypeByNavn(navn, pm);
+       return retPizza;
     }
 
 }

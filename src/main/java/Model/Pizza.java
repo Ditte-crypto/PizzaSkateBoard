@@ -41,18 +41,6 @@ public class Pizza {
         this.pris = pris;
     }
 
-    public static Pizza getPizzaTypeByNavn(String navn, PizzaMapper pm){
-        Pizza retPizza = null;
-        ArrayList<Pizza> pizzaliste = pm.makePizzaObjectsFromDB();
-        for(Pizza p:pizzaliste){
-            if(p.getNavn().equals(navn)){
-                retPizza = p;
-                System.out.println("Pizzaen er tilføjet bestillingen");
-            }
-            else {
-                System.out.println("Pizzaen findes ikke på menukortet, prøv igen");
-            }
-        }
-        return retPizza;
+
     }
 }
