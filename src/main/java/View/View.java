@@ -1,7 +1,6 @@
 package View;
 
 import Controller.Controller;
-import DataMappers.PizzaBestillingsMapper;
 import DataMappers.PizzaMapper;
 import Model.Pizza;
 
@@ -43,7 +42,7 @@ public class View {
         System.out.println("Afhentningstidspunkt? hh:mm");
         CharSequence tidspunkt = in.nextLine();
         //tidspunkt til DateTime type
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hhmm");
         TemporalAccessor temporalAccessor = formatter.parse(tidspunkt);
         LocalTime afhentningstidspunkt = LocalTime.from(temporalAccessor);
         retList.add(afhentningstidspunkt);
@@ -65,8 +64,6 @@ public class View {
             String navn = in.nextLine();
             retPizza = c.getPizzaTypeByNavn(navn, pm);*/
         }
-    }
-
 }
 
 

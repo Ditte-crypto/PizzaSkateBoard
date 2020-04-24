@@ -13,6 +13,13 @@ public class Pizza {
     public Pizza() {
     }
 
+    public Pizza(int id, String navn, String ingredienser, double pris){
+        this.id = id;
+        this.navn = navn;
+        this.ingredienser = ingredienser;
+        this.pris = pris;
+    }
+
     public int getId() {
         return id;
     }
