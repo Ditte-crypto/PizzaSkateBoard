@@ -26,6 +26,9 @@ insert into bestillinger(Afhentning)
 values(`11:22:00`);
 
 INSERT INTO bestillinger(Afhentning)
+VALUES('11:04:30');
+
+INSERT INTO bestillinger(Afhentning)
 VALUES(`14:30:00`);
 
 create table pizzabestillinger (
@@ -37,3 +40,5 @@ foreign key(BestillingsID) references bestillinger(BestillingsID)
 
 INSERT INTO pizzabestillinger (BestillingsID, PizzaID)
 VALUES(1,3),(1,2),(2,1);
+
+insert into pizzabestillinger(BestillingsID, PizzaID) values (24,1);insert into pizzabestillinger(BestillingsID, PizzaID) values (24,2);
