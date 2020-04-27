@@ -17,45 +17,7 @@ public class Main {
         PizzaMapper pm = new PizzaMapper();
         BestillingsMapper bm = new BestillingsMapper();
 
-        startMenuFunk(view, c, pm, bm);
-    }
-    public static void lavNyPizza(View view, Controller c, PizzaMapper pm){
-        List<Object> pizzainfo = view.createPizza();
-        Pizza pizza = c.createPizza(pizzainfo);
-        pm.createPizzaInDB(pizza);
-        view.success();
-    }
-    public static void lavNyBestilling(View view, Controller c, BestillingsMapper bm, PizzaMapper pm){
-        List<Object> bestillingsinfo = view.createBestilling(pm, c);
-        Bestilling bestilling = c.createBestilling(bestillingsinfo);
-        bm.createBestillingInDB(bestilling);
-
+        c.startMenuFunk(view, c, pm, bm);
     }
 
-    public static void visPizzaerIDBTilBruger(View view, Controller c, PizzaMapper pm){
-        ArrayList<Pizza> pizzaer = c.sendPizzasFromDB(pm);
-        view.showMenu(pizzaer);
-    }
-
-    public static void startMenuFunk(View view, Controller c, PizzaMapper pm, BestillingsMapper bm){
-        Scanner in = new Scanner(System.in);
-        view.startMenu();
-        String input = in.nextLine().toLowerCase();
-        if(!input.equals("q")){
-            switch(input){
-                case "1":lavNyPizza(view, c, pm);
-                    startMenuFunk(view, c, pm, bm);
-                break;
-                case "2":visPizzaerIDBTilBruger(view, c, pm);
-                startMenuFunk(view, c, pm, bm);
-                break;
-                case "3":lavNyBestilling(view, c, bm, pm);
-                startMenuFunk(view, c, pm, bm);
-                break;
-                default:
-                    System.out.println("Ugyldigt input");
-                    startMenuFunk(view, c, pm, bm);
-            }
-        }else{startMenuFunk(view, c, pm, bm);}
-    }
 }
