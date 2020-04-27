@@ -27,6 +27,11 @@ public class BestillingsMapper {
 
          */
 
+        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hhmm");
+        TemporalAccessor temporalAccessor = formatter.parse(tidspunkt);
+        LocalTime afhentningstidspunkt = LocalTime.from(temporalAccessor);
+        /*
+         */
         /*
         INSERT INTO pizzabestillinger (BestillingsID, PizzaID)
         VALUES
