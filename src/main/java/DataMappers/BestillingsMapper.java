@@ -40,18 +40,18 @@ public class BestillingsMapper {
         try {
             Statement statement = connection.createStatement();
             Statement statement2 = connection.createStatement();
-            sqlQuerybestillinger = "insert into bestillinger(afhentning)" + "values ("
-                    + bestilling.getAfhentning() + "00);";
+            sqlQuerybestillinger = "insert into bestillinger(afhentning) values ('"
+                    + bestilling.getAfhentning() + "');";
             statement.executeUpdate(sqlQuerybestillinger, Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = statement.getGeneratedKeys();
             int bestillingsID = resultSet.getInt(1);
             ArrayList<Pizza> pizzaerIBestilling = bestilling.getPizzaerIBestilling();
-            sqlQuerybestillinger = "insert into pizzabestillinger(bestilling, pizza) values";
+            sqlQuerybestillinger = "insert into pizzabestillinger(BestillingsID, PizzaID) values";
             for (Pizza p : pizzaerIBestilling) {
                 int pizzaId = p.getId();
-                sqlQuerybestillinger += "("+bestillingsID+","+ pizzaId+"),";
+                sqlQuerybestillinger += "("+bestillingsID+","+ pizzaId+");";
             }
-            String queryLast = sqlQuerybestillinger.substring(0,sqlQuerybestillinger.length()-1);
+            String queryLast = sqlQuerybestillinger.substring(0,sqlQuerybestillinger.length()-1 );
             statement2.executeUpdate(queryLast);
 
 

@@ -53,9 +53,9 @@ int id;
 
     @Before
     public void setUp() throws Exception {
-        tidspunkt = "0104";
+        tidspunkt = "04:05:50";
         bestillingsMapper = new BestillingsMapper();
-        formatter = DateTimeFormatter.ofPattern("hhmm");
+        formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         temporalAccessor = formatter.parse(tidspunkt);
         localTime = LocalTime.from(temporalAccessor);
         pizzas = new ArrayList<>();
