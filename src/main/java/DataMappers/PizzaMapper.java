@@ -52,6 +52,7 @@ public class PizzaMapper {
                 String ingredienser = resultSet.getString("Ingredienser");
                 double pris = resultSet.getDouble("Pris");
                 retPizza = new Pizza();
+                retPizza.setId(pizzaID);
                 retPizza.setNavn(navn);
                 retPizza.setIngredienser(ingredienser);
                 retPizza.setPris(pris);

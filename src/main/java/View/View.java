@@ -2,6 +2,7 @@ package View;
 
 import Controller.Controller;
 import DataMappers.PizzaMapper;
+import Model.Bestilling;
 import Model.Pizza;
 
 import java.time.LocalTime;
@@ -29,6 +30,9 @@ public class View {
 
    }
    public void showMenu(ArrayList<Pizza> pizzaer){
+       for (Pizza p: pizzaer) {
+           System.out.println(p);
+       }
        System.out.println(pizzaer);
    }
    public void startMenu(){
@@ -36,13 +40,15 @@ public class View {
        +"[2] : se menukortet\n"+"[3] : lav bestilling\n"
        +"[q] : for at vende tilbage til hovedmenuen\n");
    }
-    public List<Object> createBestilling(PizzaMapper pm, Controller c){
+    public List<Object> createBestilling(){
        //returner som string
         List<Object> retList = new ArrayList <Object>();
+
         Scanner in = new Scanner(System.in);
         System.out.println("Afhentningstidspunkt? hh:mm");
         CharSequence tidspunkt = in.nextLine();
         //tidspunkt til DateTime type
+
         retList.add(tidspunkt);
 
         return retList;

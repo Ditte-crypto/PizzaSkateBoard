@@ -43,7 +43,7 @@ public class Bestilling {
 
 
 public LocalTime afhentningstidspunkt(CharSequence input){
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hhmm");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
     TemporalAccessor temporalAccessor = formatter.parse(input);
     LocalTime afhentningstidspunkt = LocalTime.from(temporalAccessor);
     return afhentningstidspunkt;

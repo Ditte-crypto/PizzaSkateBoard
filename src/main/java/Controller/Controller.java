@@ -28,7 +28,7 @@ public class Controller {
     }
 
     public Bestilling createBestilling(List<Object> bestillingsinfo) {
-        LocalTime afhentning = (LocalTime) bestillingsinfo.get(0);
+        CharSequence afhentning = (CharSequence) bestillingsinfo.get(0);
         ArrayList<Pizza> pizzaArrayList = (ArrayList<Pizza>) bestillingsinfo.get(1);
         Bestilling bestilling = new Bestilling(afhentning, pizzaArrayList);
         return bestilling;
@@ -54,9 +54,10 @@ public class Controller {
         view.success();
     }
     public static void lavNyBestilling(View view, Controller c, BestillingsMapper bm, PizzaMapper pm){
-        List<Object> bestillingsinfo = view.createBestilling(pm, c);
+        List<Object> bestillingsinfo = view.createBestilling();
         Bestilling bestilling = c.createBestilling(bestillingsinfo);
         bm.createBestillingInDB(bestilling);
+        view.success();
 
     }
 

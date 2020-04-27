@@ -46,8 +46,8 @@ public class BestillingsMapper {
 
         Connection connection = DBConnector.getInstance().getConnection();
         try {
+            Statement statement2 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             Statement statement = connection.createStatement();
-            Statement statement2 = connection.createStatement();
             sqlQuerybestillinger = "insert into bestillinger(afhentning) values ('"
                     + bestilling.getAfhentning() + "');";
             statement.executeUpdate(sqlQuerybestillinger, Statement.RETURN_GENERATED_KEYS);
@@ -56,14 +56,15 @@ public class BestillingsMapper {
             resultSet.next();
             int bestillingsID = resultSet.getInt(1);
             ArrayList<Pizza> pizzaerIBestilling = bestilling.getPizzaerIBestilling();
+            connection.setAutoCommit(false);
             for(Pizza p : pizzaerIBestilling){
                 int pizzaId = p.getId();
-                sqlQuerybestillinger2 = sqlQuerybestillinger2 + "insert into pizzabestillinger(BestillingsID, PizzaID) values " +
-                        "('"+bestillingsID+"','"+ pizzaId+"');";
+                sqlQuerybestillinger2 = "insert into pizzabestillinger(BestillingsID, PizzaID) values " +
+                        "("+bestillingsID+","+ pizzaId+");";
                 statement2.addBatch(sqlQuerybestillinger2);
             }
             statement2.executeBatch();
-
+            connection.commit();
 
         } catch (SQLException e) {
             System.out.println("Fejl: " + e.getMessage());

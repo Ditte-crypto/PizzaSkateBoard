@@ -20,6 +20,18 @@ public class Pizza {
         this.pris = pris;
     }
 
+    @Override
+    public String toString() {
+        return  "\nPizza Nummer: " + id +
+                "\nNavn: " + navn  +
+                "\ningredienser: " + ingredienser +
+                "\npris: " + pris;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
