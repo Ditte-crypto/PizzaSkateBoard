@@ -53,7 +53,7 @@ int id;
 
     @Before
     public void setUp() throws Exception {
-        tidspunkt = "04:05:50";
+        tidspunkt = "10:05:50";
         bestillingsMapper = new BestillingsMapper();
         formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         temporalAccessor = formatter.parse(tidspunkt);
