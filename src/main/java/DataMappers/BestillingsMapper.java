@@ -59,9 +59,9 @@ public class BestillingsMapper {
             for(Pizza p : pizzaerIBestilling){
                 int pizzaId = p.getId();
                 sqlQuerybestillinger2 = sqlQuerybestillinger2 + "insert into pizzabestillinger(BestillingsID, PizzaID) values " +
-                        "("+bestillingsID+","+ pizzaId+");";
+                        "('"+bestillingsID+"','"+ pizzaId+"');";
+                statement2.addBatch(sqlQuerybestillinger2);
             }
-            statement2.addBatch(sqlQuerybestillinger2);
             statement2.executeBatch();
 
 
