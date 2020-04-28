@@ -1,0 +1,66 @@
+@startuml
+
+
+Controller.Controller -- Model.Bestilling
+
+Controller.Controller -- View.View
+
+DataMappers.BestillingsMapper -- Controller.Controller
+
+Util.DBConnector -- DataMappers
+
+class Controller.Controller {
+Pizza : createPizza()
+ArrayList<Pizza> : sendPizzasFromDB()
+Bestilling : createBestilling()
+Pizza : getPizzaTypeByNavn()
+void : lavNyPizza()
+void : lavNyBestilling()
+void : visPizzaerIDBTilBruger()
+void : startMenuFunk()
+
+}
+class Model.Bestilling {
+LocalTime : afhentning
+ArrayList<Pizza> : pizzaerIBestilling
+int : id
+--
+int : getId()
+void : setAfhentning()
+void : setPizzaerIBestilling()
+}
+
+class Model.Pizza {
+int : id
+String : navn
+String : ingredienser
+double : pris
+--
+void : setId()
+void : setNavn()
+void : setIngredienser()
+void : setPris()
+}
+
+class Model.Main {
+View view = new View();
+Controller c = new Controller();
+PizzaMapper pm = new PizzaMapper();
+BestillingsMapper bm = new BestillingsMapper();
+--
+c.startMenuFunk(view, c, pm, bm);
+}
+
+class DataMappers.BestillingsMapper {
+void : createBestillingInDB()
+}
+
+class DataMappers.PizzaMapper {
+void : createPizzaInDB()
+ArrayList<Pizza> : makePizzaObjectsFromDB()
+}
+
+class Util.DBConnector {
+}
+
+@enduml
